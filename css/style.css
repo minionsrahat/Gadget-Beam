@@ -4,6 +4,11 @@
     display: flex;
     /* align-items: center; */
 }
+
+section{
+    margin: 20px 0px;
+    min-height: 600px;
+}
 .phone-div .card-img-top{
     width: 76%!important;
 }

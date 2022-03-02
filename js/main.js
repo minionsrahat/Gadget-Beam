@@ -41,15 +41,14 @@ let clear = () => {
 
 let displayPhones = (phones) => {
     let wrapper = document.getElementById('wrapper')
-    // console.log(phones.data);
     if (phones.data.length > 0) {
         console.log(phones.data[20]);
-        let couner=0;
+        let counter=0;
         phones.data.forEach(element => {
-            // counter++;
+            counter++;
             let div = document.createElement('div')
             div.classList.add('col')
-            div.innerHTML = `  <div class="card phone-div">
+            div.innerHTML = `  <div class="card shadow phone-div">
             <div class="d-flex align-items-center flex-column">
               <img src="${element.image}" class="card-img-top" alt="...">
               <div class="card-body">
@@ -64,19 +63,20 @@ let displayPhones = (phones) => {
               <button type="button" onclick="gadgetDetails('${element.slug}')" class="btn btn-primary">Details</button>
             </div>
           </div>`
-          if(couner<=20)
+          if(counter<=20)
           {
-            
+            wrapper.appendChild(div)
           }
-          wrapper.appendChild(div)
-        //   else{
-        //     div.classList.add('hide-div d-none')
-        //     wrapper.appendChild(div)
-        //   }
+         
+          else{
+            div.classList.add('hide-div')
+            div.classList.add('d-none')
+            wrapper.appendChild(div)
+          }
 
         });
 
-        if(couner>20){
+        if(counter>20){
          showMorebtn()
         }
     }
@@ -86,6 +86,19 @@ let displayPhones = (phones) => {
     }
     hideSpinner()
 }
+
+const showMoreResults=()=>{
+    hideMorebtn()
+    console.log('hey');
+    const hideDiv=document.querySelectorAll('.hide-div');
+    Array.from(hideDiv).forEach(element => {
+        element.classList.remove('d-none')
+    });
+
+}
+
+
+
 document.getElementById('button-search').addEventListener('click', () => {
     hideAlert();
     clear();
@@ -95,6 +108,10 @@ document.getElementById('button-search').addEventListener('click', () => {
         loadFoods(searchQuery)
     }
 })
+
+
+
+
 
 const gadgetDetails = (slug) => {
     url = `https://openapi.programming-hero.com/api/phone/${slug}`;
