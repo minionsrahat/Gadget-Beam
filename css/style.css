@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Montserrat:wght@100&family=Noto+Serif:ital,wght@1,700&family=Playfair+Display:ital,wght@1,500&family=Poppins:wght@100&display=swap');
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #f8fafe!important
+}
+
+.title{
+    color: white;
+    margin: 10px 0px;
+    font-family: 'Playfair Display', serif;
+    font-weight: bolder;
+}
+
 
 .phone-div{
     padding: 25px;
@@ -7,8 +22,69 @@
 
 section{
     margin: 20px 0px;
-    min-height: 600px;
+    min-height: 400px;
 }
 .phone-div .card-img-top{
     width: 76%!important;
 }
+.row{
+    margin-left: 0px!important;
+    margin-right: 0px!important;
+}
+
+.domain-search {
+    margin: 0;
+    padding: 50px 0
+}
+
+.bg-pblue {
+    background-color: #35abdf
+}
+
+.domain-search .input-group {
+    -webkit-box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1)
+}
+
+.domain-search .input-group-addon {
+    border: none
+}
+
+.domain-search .form-title strong {
+    display: block
+}
+
+.domain-search .form-control {
+    height: 60px;
+    border-radius: 0;
+    border: none
+}
+
+.domain-search .form-control:focus {
+    box-shadow: 0px 0px 0px 0px #ffffff !important
+}
+
+.input-group .input-group-addon [type="submit"],
+.input-group .input-group-addon button {
+    border: none;
+    border-radius: 0
+}
+
+.domain-search .btn {
+    padding: 0 54px;
+    line-height: 60px
+}
+
+.btn-primary {
+    padding: 0 28px;
+    line-height: 54px;
+    background: #ff6726;
+    color: #fff
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74
+}
+
