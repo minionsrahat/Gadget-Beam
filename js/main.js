@@ -97,11 +97,10 @@ const showMoreResults=()=>{
 
 }
 
-
-
 document.getElementById('button-search').addEventListener('click', () => {
     hideAlert();
     clear();
+    hideMorebtn();
     let searchQuery = document.getElementById('search-text').value
     if (searchQuery != "") {
         showSpinner()
