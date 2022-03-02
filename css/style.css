@@ -1,0 +1,9 @@
+
+.phone-div{
+    padding: 25px;
+    display: flex;
+    /* align-items: center; */
+}
+.phone-div .card-img-top{
+    width: 76%!important;
+}
