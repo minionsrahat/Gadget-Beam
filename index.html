@@ -15,148 +15,92 @@
 </head>
 
 <body>
-  <div class="row domain-search bg-pblue">
-    <div class="container">
-        <h1 class="text-center title">
-          GadGet Beam <i class="fa fa-phone" aria-hidden="true"></i>
-        </h1>
-        <div class="row">
-          <h3 class="text-center my-4 text-white">Search Your Desired Gadget  </h3>
-            <div class="col-md-7 mx-auto">
-                <div class="input-group"> <input type="search"id="search-text"placeholder="Gadget Name" class="form-control">
-                   <span class="input-group-addon"> <button type="button"id="button-search" class="btn btn-primary">Search</button></span>
-                   </div>
-            </div>
-        </div>
+
+
+
+
+
+
+<!-- search bar design start -->
+  <header>  
+    <div class="row domain-search bg-pblue">
+      <div class="container">
+          <h1 class="text-center title">
+            GadGet Beam <i class="fa fa-phone" aria-hidden="true"></i>
+          </h1>
+          <div class="row">
+            <h3 class="text-center my-4 text-white">Search Your Desired Gadget  </h3>
+              <div class="col-md-7 mx-auto">
+                  <div class="input-group"> <input type="search"id="search-text"placeholder="Gadget Name" class="form-control">
+                     <span class="input-group-addon"> <button type="button"id="button-search" class="btn btn-primary">Search</button></span>
+                     </div>
+              </div>
+          </div>
+      </div>
     </div>
-  </div>
+  </header>
+<!-- search bar design end -->
 
 
-  
-
+<!-- spinner design start -->
   <div id="spinner" class="d-none mt-5 justify-content-center">
     <div class="spinner-border" style="width: 5rem; height: 5rem;" role="status">
     </div>
   </div>
+<!-- spinner design end -->
+
 
 
   <section>
-    <div class="container mt-5 ">
+    <div class="container mt-2">
+
+
+       <!-- div for showing search  title -->
+
+       <div id="search-title"  class="text-center my-3 d-none">
+        
+       </div>
+    
+
+
+      <!-- div for showing alert message -->
       <div id="alert"
         class="alert alert-warning alert-dismissible fade show mt-5 justify-content-center d-none text-center"
         role="alert">
-        <strong>Opps!</strong> No Results Found.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <h5>
+          <strong>Opps!</strong> No Results Found.
+        </h5>
+      
       </div>
 
 
+      <!-- div for insert phone details -->
       <div id="gadgetDetails" class="d-flex flex-column align-items-center">
-        <!-- <div class="intro-div d-flex flex-column align-items-center p-3">
-          <img src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13-pro-max.jpg" alt="Not Found">
-          <h4 class="py-2">Model : iPhone 13 Pro Max</h4>
-          <h4 class="py-1">Brand: Apple</h4>
-          <h4>Release Date: Released 2021, September 24</h4>
-        </div>
-
-        <table class="table table-striped my-3 table-hover w-75">
-          <tbody>
-            <tr>
-              <th class="text-center" colspan="2">
-                Main Feature
-              </th>
-            </tr>
-            <tr>
-              <td class="w-25">Chip Set</td>
-              <td class="w-75">Apple A15 Bionic (5 nm)</td>
-            </tr>
-            <tr>
-              <td class="w-25">Display Size</td>
-              <td class="w-75">6.7 inches, 109.8 cm2 (~87.4% screen-to-body ratio)</td>
-            </tr>
-            <tr>
-              <td class="w-25">Memory</td>
-              <td class="w-75">128GB 6GB RAM, 256GB 6GB RAM, 512GB 6GB RAM, 1TB 6GB RAM</td>
-            </tr>
-            <tr class="w-100">
-              <td class="w-25">Sensors</td>
-              <td class="w-75 sensors">Face ID,
-                accelerometer,
-                gyro,
-                proximity,
-                compass,
-                barometer</td>
-            </tr>
-            <tr>
-              <td class="w-25">Storage</td>
-              <td class="w-75">128GB 6GB RAM, 256GB 6GB RAM, 512GB 6GB RAM, 1TB 6GB RAM</td>
-            </tr>
-          </tbody>
-        </table>
-        <table class="table table-striped table-hover w-75">
-          <tbody>
-            <tr>
-              <th class="text-center" colspan="2">
-                Others
-              </th>
-            </tr>
-            <tr>
-              <td class="w-25">Bluetooth</td>
-              <td class="w-75">5.0, A2DP, LE</td>
-            </tr>
-            <tr>
-              <td class="w-25">GPS</td>
-              <td class="w-75">Yes, with A-GPS, GLONASS, GALILEO, BDS, QZSS</td>
-            </tr>
-            <tr>
-              <td class="w-25">NFC</td>
-              <td class="w-75">Yes</td>
-            </tr>
-            <tr>
-              <td class="w-25">Radio</td>
-              <td class="w-75">No</td>
-            </tr>
-            <tr>
-              <td class="w-25">USB</td>
-              <td class="w-75">Lightning, USB 2.0</td>
-            </tr>
-            <tr>
-              <td class="w-25">WLAN</td>
-              <td class="w-75">Wi-Fi 802.11 a/b/g/n/ac/6, dual-band, hotspot</td>
-            </tr>
-          </tbody>
-        </table> -->
       </div>
 
+
+
+      <!-- div for load gadgets via api -->
 
       <div id="wrapper" class="row row-cols-1 row-cols-md-3 g-5 mt-5">
 
-        <!-- <div class="col">
-          <div class="card phone-div">
-            <div class="d-flex align-items-center flex-column">
-              <img src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13-mini.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Apple </h5>
-                <p class="card-text">
-                  iPhone 13 mini
-                </p>
-              </div>
-            </div>
-            <hr>
-            <div class="text-center">
-              <button type="button" onclick="gadgetDetails('')" class="btn btn-primary">Details</button>
-            </div>
-          </div>
-        </div> -->
+
       </div>
 
+
+
+
+      <!-- show more button -->
       <div id="show-more" class="text-center my-3 p-2">
-        <button type="button" class="btn btn-success" onclick="showMoreResults()">Show More Results</button>
+        <button type="button" class="btn btn-primary" onclick="showMoreResults()">Show More Results</button>
       </div>
     </div>
 
   </section>
 
 
+
+<!-- footer design start -->
   <footer class="bg-pblue p-3">
     <div class="container d-flex align-items-center justify-content-center text-white">
       <p class=""><strong>
@@ -164,8 +108,7 @@
         </strong> </p>
     </div>
   </footer>
-
-
+<!-- footer design end -->
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

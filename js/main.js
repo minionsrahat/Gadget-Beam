@@ -1,49 +1,87 @@
-let loadFoods = (phone) => {
+//load gadget details via api
+let loadGadgets = (phone) => {
     fetch(`https://openapi.programming-hero.com/api/phones?search=${phone}`)
         .then(response => response.json())
         .then(data => displayPhones(data))
 }
 
-
+//Show spinner
 let showSpinner = () => {
     document.getElementById('spinner').classList.remove('d-none')
     document.getElementById('spinner').classList.add('d-flex')
 }
 
+//Hide spinner
 let hideSpinner = () => {
     document.getElementById('spinner').classList.remove('d-flex')
     document.getElementById('spinner').classList.add('d-none')
 }
 
+//show alert message
 let showAlert = () => {
     document.getElementById('alert').classList.remove('d-none')
 }
 
+
+//hide alert message
 let hideAlert = () => {
     document.getElementById('alert').classList.add('d-none')
 }
 
-let showMorebtn= () => {
+
+// show view more button
+let showMorebtn = () => {
     document.getElementById('show-more').classList.remove('d-none')
 }
 
+
+// hide view more button
 let hideMorebtn = () => {
     document.getElementById('show-more').classList.add('d-none')
 }
 
+
+
+// show search title
+let showSearchtitle = (searchQuery) => {
+    document.getElementById('search-title').classList.remove('d-none')
+    document.getElementById('search-title').innerHTML =
+    `<h2 class="">
+    Search Results for "${searchQuery}"
+    </h2>
+    <hr>`
+
+}
+
+// hide search title
+let hideSearchtitle = () => {
+    document.getElementById('search-title').classList.add('d-none')
+}
+
+
+//clear wrapper div and gadgetdetails div
 let clear = () => {
     let wrapper = document.getElementById('wrapper')
     wrapper.textContent = "";
-    document.getElementById('gadgetDetails').textContent="";
+    document.getElementById('gadgetDetails').textContent = "";
 
 }
 
 
+//display all loaded phones details
 let displayPhones = (phones) => {
+
+    //get wrapper div
     let wrapper = document.getElementById('wrapper')
+
+
     if (phones.data.length > 0) {
-        console.log(phones.data[20]);
-        let counter=0;
+
+
+        //declare counter for display only 20 phones
+        let counter = 0;
+
+        //iterate phone data
         phones.data.forEach(element => {
             counter++;
             let div = document.createElement('div')
@@ -63,55 +101,54 @@ let displayPhones = (phones) => {
               <button type="button" onclick="gadgetDetails('${element.slug}')" class="btn btn-primary">Details</button>
             </div>
           </div>`
-          if(counter<=20)
-          {
-            wrapper.appendChild(div)
-          }
-         
-          else{
-            div.classList.add('hide-div')
-            div.classList.add('d-none')
-            wrapper.appendChild(div)
-          }
+            if (counter <= 20) {
+                //append phone data to wrapper div
+                wrapper.appendChild(div)
+            }
+
+            else {
+
+                //hide phones data
+                div.classList.add('hide-div')
+                div.classList.add('d-none')
+                wrapper.appendChild(div)
+            }
 
         });
 
-        if(counter>20){
-         showMorebtn()
+        if (counter > 20) {
+
+            //display view more button
+            showMorebtn()
         }
     }
 
     else {
+
+        //display alert
         showAlert()
     }
+
+    //hide spinner
     hideSpinner()
 }
 
-const showMoreResults=()=>{
+const showMoreResults = () => {
+
+    //hide view more button
     hideMorebtn()
-    console.log('hey');
-    const hideDiv=document.querySelectorAll('.hide-div');
+
+
+    //show all hidden phone details
+    const hideDiv = document.querySelectorAll('.hide-div');
     Array.from(hideDiv).forEach(element => {
         element.classList.remove('d-none')
     });
 
 }
 
-document.getElementById('button-search').addEventListener('click', () => {
-    hideAlert();
-    clear();
-    hideMorebtn();
-    let searchQuery = document.getElementById('search-text').value
-    if (searchQuery != "") {
-        showSpinner()
-        loadFoods(searchQuery)
-    }
-})
 
-
-
-
-
+//load single gadget details
 const gadgetDetails = (slug) => {
     url = `https://openapi.programming-hero.com/api/phone/${slug}`;
     fetch(url)
@@ -119,10 +156,15 @@ const gadgetDetails = (slug) => {
         .then(data => showgadgetDetails(data))
 
 }
+
+
+
+//show single gadget details
 const showgadgetDetails = (object) => {
     const gadgetDetailsDiv = document.getElementById('gadgetDetails');
     if (object.status) {
         const sensor = object.data.mainFeatures.sensors?.join(`,\n`);
+
         gadgetDetailsDiv.innerHTML = `
         <div class="intro-div d-flex flex-column align-items-center p-3">
                 <img src="${object.data.image}" alt="Not Found">
@@ -188,4 +230,35 @@ const showgadgetDetails = (object) => {
     }
 }
 
-hideMorebtn()
+
+
+// add event listener to search button
+document.getElementById('button-search').addEventListener('click', () => {
+    let searchQuery = document.getElementById('search-text').value.trim()
+
+    //validate search query is valid or not
+    if (searchQuery) {
+
+        //hide alert msg and show spinner
+        showSearchtitle(searchQuery)
+        hideAlert();
+        clear();
+        hideMorebtn();
+        showSpinner()
+
+        //load all search results...
+        loadGadgets(searchQuery)
+    }
+    else {
+        document.getElementById('search-text').value = ""
+        alert("Please Enter Valid Search Query")
+    }
+})
+
+
+
+
+//hide alert,view more button and clear content of wrapper div
+hideAlert();
+clear();
+hideMorebtn();

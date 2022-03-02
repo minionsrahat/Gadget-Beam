@@ -1,10 +1,16 @@
+/* import css */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Montserrat:wght@100&family=Noto+Serif:ital,wght@1,700&family=Playfair+Display:ital,wght@1,500&family=Poppins:wght@100&display=swap');
 
+
+
+/* css for body */
 body {
     margin: 0px;
     padding: 0px;
     background-color: #f8fafe!important
 }
+
+
 
 .title{
     color: white;
@@ -14,32 +20,41 @@ body {
 }
 
 
+section{
+    margin: 10px 0px;
+    min-height: 450px;
+}
+
+
+/* css for single phone-div start*/
 .phone-div{
     padding: 25px;
     display: flex;
-    /* align-items: center; */
 }
 
-section{
-    margin: 20px 0px;
-    min-height: 400px;
-}
 .phone-div .card-img-top{
     width: 76%!important;
 }
+/* css for single phone-div end */
+
+
 .row{
     margin-left: 0px!important;
     margin-right: 0px!important;
 }
 
+.bg-pblue {
+    background-color: #35abdf
+}
+
+
+/* css for search bar start */
 .domain-search {
     margin: 0;
     padding: 50px 0
 }
 
-.bg-pblue {
-    background-color: #35abdf
-}
+
 
 .domain-search .input-group {
     -webkit-box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
@@ -88,3 +103,5 @@ section{
     border-color: #204d74
 }
 
+
+/* css for search bar end */
