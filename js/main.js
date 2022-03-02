@@ -101,7 +101,7 @@ let displayPhones = (phones) => {
               <button type="button" onclick="gadgetDetails('${element.slug}')" class="btn btn-primary">Details</button>
             </div>
           </div>`
-            if (counter <= 20) {
+            if (counter <= 18) {
                 //append phone data to wrapper div
                 wrapper.appendChild(div)
             }
@@ -116,7 +116,7 @@ let displayPhones = (phones) => {
 
         });
 
-        if (counter > 20) {
+        if (counter > 18) {
 
             //display view more button
             showMorebtn()
@@ -248,6 +248,9 @@ document.getElementById('button-search').addEventListener('click', () => {
 
         //load all search results...
         loadGadgets(searchQuery)
+
+        //clear input field
+        document.getElementById('search-text').value=""
     }
     else {
         document.getElementById('search-text').value = ""
