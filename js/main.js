@@ -5,38 +5,40 @@ let loadFoods = (phone) => {
 }
 
 
-let showSpinner=()=>{
+let showSpinner = () => {
     document.getElementById('spinner').classList.remove('d-none')
     document.getElementById('spinner').classList.add('d-flex')
 }
 
 
-let hideSpinner=()=>{
+let hideSpinner = () => {
     document.getElementById('spinner').classList.remove('d-flex')
     document.getElementById('spinner').classList.add('d-none')
 }
 
-let showAlert=()=>{
+let showAlert = () => {
     document.getElementById('alert').classList.remove('d-none')
 }
 
-let hideAlert=()=>{
+let hideAlert = () => {
     document.getElementById('alert').classList.add('d-none')
 }
- let clear=()=>{
+let clear = () => {
     let wrapper = document.getElementById('wrapper')
-    wrapper.textContent = ""
- }
+    wrapper.textContent = "";
+    document.getElementById('gadgetDetails').textContent="";
+
+}
 
 
 let displayPhones = (phones) => {
     let wrapper = document.getElementById('wrapper')
     // console.log(phones.data);
-    if (phones.data.length>0) {
+    if (phones.data.length > 0) {
         phones.data.forEach(element => {
             let div = document.createElement('div')
             div.classList.add('col')
-            div.innerHTML =`  <div class="card phone-div">
+            div.innerHTML = `  <div class="card phone-div">
             <div class="d-flex align-items-center flex-column">
               <img src="${element.image}" class="card-img-top" alt="...">
               <div class="card-body">
@@ -56,8 +58,8 @@ let displayPhones = (phones) => {
 
     }
 
-    else{
-       showAlert()
+    else {
+        showAlert()
     }
     hideSpinner()
 }
@@ -70,3 +72,79 @@ document.getElementById('button-search').addEventListener('click', () => {
         loadFoods(searchQuery)
     }
 })
+
+const gadgetDetails = (slug) => {
+    url = `https://openapi.programming-hero.com/api/phone/${slug}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => showgadgetDetails(data))
+
+}
+const showgadgetDetails = (object) => {
+    const gadgetDetailsDiv = document.getElementById('gadgetDetails');
+    if (object.status) {
+        const sensor = object.data.mainFeatures.sensors.join(`,\n`);
+        gadgetDetailsDiv.innerHTML = `
+        <div class="intro-div d-flex flex-column align-items-center p-3">
+                <img src="${object.data.image}" alt="Not Found">
+                <h4>Model : ${object.data.name}</h4>
+                <h4>Brand: ${object.data.brand}</h4>
+                <h4>Release Date: ${object.data?.releaseDate ? object.data?.releaseDate : 'No Release Date Found'}</h4>
+            </div>
+            <table class="table table-striped table-hover w-75">
+                    <th class="text-center" colspan="2">
+                        Main Feature 
+                    </th>
+                    <tr>
+                        <td class="w-25">Chip Set</td>
+                        <td class="w-75">${object.data.mainFeatures.chipSet}</td>
+                    </tr>
+                    <tr >
+                        <td class="w-25">Display Size</td>
+                        <td class="w-75">${object.data.mainFeatures.displaySize}</td>
+                    </tr>
+                    <tr >
+                        <td class="w-25">Memory</td>
+                        <td class="w-75">${object.data.mainFeatures.memory}</td>
+                    </tr>
+                    <tr class='w-100'>
+                        <td class="w-25">Sensors</td>
+                        <td class="w-75 sensors">${sensor}</td>
+                    </tr>
+                    <tr >
+                        <td class="w-25">Storage</td>
+                        <td class="w-75">${object.data.mainFeatures.memory}</td>
+                    </tr>
+                </table>
+                <table class="table table-striped table-hover w-75">
+                <th class="text-center" colspan="2">
+                    Others 
+                </th>
+                <tr >
+                    <td class="w-25">Bluetooth</td>
+                    <td class="w-75">${object.data.others?.Bluetooth ? object.data.others?.Bluetooth : 'Info Not Available'}</td>
+                </tr>
+                <tr >
+                    <td class="w-25">GPS</td>
+                    <td class="w-75">${object.data.others?.GPS ? object.data.others?.GPS : 'Info Not Available'}</td>
+                </tr>
+                <tr >
+                    <td class="w-25">NFC</td>
+                    <td class="w-75">${object.data.others?.NFC ? object.data.others?.NFC : 'Info Not Available'}</td>
+                </tr>
+                <tr >
+                    <td class="w-25">Radio</td>
+                    <td class="w-75">${object.data.others?.Radio ? object.data.others?.Radio : 'Info Not Available'}</td>
+                </tr>
+                <tr >
+                    <td class="w-25">USB</td>
+                    <td class="w-75">${object.data.others?.USB ? object.data.others?.USB : 'Info Not Available'}</td>
+                </tr>
+                <tr >
+                    <td class="w-25">WLAN</td>
+                    <td class="w-75">${object.data.others?.WLAN ? object.data.others?.WLAN : 'Info Not Available'}</td>
+                </tr>
+            </table>`;
+        document.getElementById("gadgetDetails").scrollIntoView({ behavior: 'smooth' });
+    }
+}
