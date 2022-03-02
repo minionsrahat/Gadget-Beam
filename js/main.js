@@ -10,7 +10,6 @@ let showSpinner = () => {
     document.getElementById('spinner').classList.add('d-flex')
 }
 
-
 let hideSpinner = () => {
     document.getElementById('spinner').classList.remove('d-flex')
     document.getElementById('spinner').classList.add('d-none')
@@ -23,6 +22,15 @@ let showAlert = () => {
 let hideAlert = () => {
     document.getElementById('alert').classList.add('d-none')
 }
+
+let showMorebtn= () => {
+    document.getElementById('show-more').classList.remove('d-none')
+}
+
+let hideMorebtn = () => {
+    document.getElementById('show-more').classList.add('d-none')
+}
+
 let clear = () => {
     let wrapper = document.getElementById('wrapper')
     wrapper.textContent = "";
@@ -35,7 +43,10 @@ let displayPhones = (phones) => {
     let wrapper = document.getElementById('wrapper')
     // console.log(phones.data);
     if (phones.data.length > 0) {
+        console.log(phones.data[20]);
+        let couner=0;
         phones.data.forEach(element => {
+            // counter++;
             let div = document.createElement('div')
             div.classList.add('col')
             div.innerHTML = `  <div class="card phone-div">
@@ -53,9 +64,21 @@ let displayPhones = (phones) => {
               <button type="button" onclick="gadgetDetails('${element.slug}')" class="btn btn-primary">Details</button>
             </div>
           </div>`
-            wrapper.appendChild(div)
+          if(couner<=20)
+          {
+            
+          }
+          wrapper.appendChild(div)
+        //   else{
+        //     div.classList.add('hide-div d-none')
+        //     wrapper.appendChild(div)
+        //   }
+
         });
 
+        if(couner>20){
+         showMorebtn()
+        }
     }
 
     else {
@@ -83,7 +106,7 @@ const gadgetDetails = (slug) => {
 const showgadgetDetails = (object) => {
     const gadgetDetailsDiv = document.getElementById('gadgetDetails');
     if (object.status) {
-        const sensor = object.data.mainFeatures.sensors.join(`,\n`);
+        const sensor = object.data.mainFeatures.sensors?.join(`,\n`);
         gadgetDetailsDiv.innerHTML = `
         <div class="intro-div d-flex flex-column align-items-center p-3">
                 <img src="${object.data.image}" alt="Not Found">
@@ -148,3 +171,5 @@ const showgadgetDetails = (object) => {
         document.getElementById("gadgetDetails").scrollIntoView({ behavior: 'smooth' });
     }
 }
+
+hideMorebtn()
